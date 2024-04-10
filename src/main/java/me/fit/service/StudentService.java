@@ -7,8 +7,8 @@ import jakarta.enterprise.context.Dependent;
 import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
+import me.fit.enums.StudentStatus;
 import me.fit.exception.StudentException;
-import me.fit.exception.StudentStatus;
 import me.fit.model.Student;
 import me.fit.model.Telefon;
 

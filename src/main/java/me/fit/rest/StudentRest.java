@@ -2,6 +2,7 @@ package me.fit.rest;
 
 import java.util.List;
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.jboss.resteasy.reactive.RestResponse.Status;
 
 import jakarta.inject.Inject;
@@ -26,6 +27,8 @@ public class StudentRest {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Path("/createStudent")
+	@Operation(summary = "Web servis koji kreira novog studenta.",
+    description = "Student mora biti unikatan.")
 	public Response createStudent(Student student){
 		Student s = null;
 		try {

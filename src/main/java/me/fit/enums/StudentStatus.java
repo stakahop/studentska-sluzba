@@ -1,4 +1,4 @@
-package me.fit.exception;
+package me.fit.enums;
 
 public enum StudentStatus {
 	EXISTS("Student vec postoji");

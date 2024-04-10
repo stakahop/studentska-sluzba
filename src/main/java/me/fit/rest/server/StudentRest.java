@@ -1,4 +1,5 @@
-package me.fit.rest;
+package me.fit.rest.server;
+
 
 import java.util.List;
 

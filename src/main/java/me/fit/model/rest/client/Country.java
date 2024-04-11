@@ -6,10 +6,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({
+	@NamedQuery(name = Country.GET_ALL, query = "Select c from Country c")
+})
 public class Country {
 
+	public static final String GET_ALL = "Country.getAll";
 	@Id
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "country_seq")
 	@JsonIgnore

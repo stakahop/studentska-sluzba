@@ -10,7 +10,6 @@ import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
-import me.fit.model.Student;
 import me.fit.model.rest.client.Country;
 import me.fit.rest.client.CountryClient;
 

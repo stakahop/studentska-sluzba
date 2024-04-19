@@ -9,6 +9,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import me.fit.enums.StudentStatus;
 import me.fit.exception.StudentException;
+import me.fit.model.IPLog;
 import me.fit.model.Student;
 import me.fit.model.Telefon;
 
@@ -19,13 +20,15 @@ public class StudentService {
 	private EntityManager em;
 
 	@Transactional
-	public Student createStudent(Student s) throws StudentException {
+	public Student createStudent(Student s, IPLog ipLog) throws StudentException {
 
 		List<Student> students = getAllStudents();
 
 		if (students.contains(s)) {
 			throw new StudentException(StudentStatus.EXISTS.getLabel());
 		}
+		
+		s.setIpLog(ipLog);
 
 		return em.merge(s);
 	}

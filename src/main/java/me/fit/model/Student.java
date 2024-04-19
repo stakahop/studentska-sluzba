@@ -3,6 +3,8 @@ package me.fit.model;
 import java.util.Date;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -13,12 +15,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
-@NamedQueries({ 
-	@NamedQuery(name = Student.GET_ALL_STUDENTS, query = "Select s from Student s"),
-	@NamedQuery(name = Student.GET_STUDENTS_BY_NAME, query = "Select s from Student s where s.ime = :name") 
-	})
+@NamedQueries({ @NamedQuery(name = Student.GET_ALL_STUDENTS, query = "Select s from Student s"),
+		@NamedQuery(name = Student.GET_STUDENTS_BY_NAME, query = "Select s from Student s where s.ime = :name") })
 public class Student {
 
 	public static final String GET_ALL_STUDENTS = "getAllStudents";
@@ -39,6 +40,10 @@ public class Student {
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JoinColumn(name = "student_id")
 	private Set<Telefon> telefoni;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private IPLog ipLog;
 
 	public Long getId() {
 		return id;
@@ -86,6 +91,14 @@ public class Student {
 
 	public void setJmbg(String jmbg) {
 		this.jmbg = jmbg;
+	}
+
+	public IPLog getIpLog() {
+		return ipLog;
+	}
+
+	public void setIpLog(IPLog ipLog) {
+		this.ipLog = ipLog;
 	}
 
 	@Override

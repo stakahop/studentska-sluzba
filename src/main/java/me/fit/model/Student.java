@@ -1,6 +1,7 @@
 package me.fit.model;
 
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -12,6 +13,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -44,6 +47,14 @@ public class Student {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private IPLog ipLog;
+
+	@ManyToMany(cascade = { CascadeType.ALL })
+    @JoinTable(
+        name = "Student_Predmet", 
+        joinColumns = { @JoinColumn(name = "student_id") }, 
+        inverseJoinColumns = { @JoinColumn(name = "predmet_id") }
+    )
+	private Set<Predmet> predmeti = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -99,6 +110,14 @@ public class Student {
 
 	public void setIpLog(IPLog ipLog) {
 		this.ipLog = ipLog;
+	}
+
+	public Set<Predmet> getPredmeti() {
+		return predmeti;
+	}
+
+	public void setPredmeti(Set<Predmet> predmeti) {
+		this.predmeti = predmeti;
 	}
 
 	@Override

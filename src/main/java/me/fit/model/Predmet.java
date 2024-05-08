@@ -12,7 +12,7 @@ import jakarta.persistence.ManyToMany;
 public class Predmet {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_seq")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "predmet_seq")
 	private Long id;
 
 	private String naziv;
